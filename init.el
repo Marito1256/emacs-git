@@ -1,4 +1,5 @@
 (setq ring-bell-function 'ignore)
+(add-to-list 'default-frame-alist '(fullscreen . fullboth))
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
@@ -8,7 +9,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(zone-nyan dimmer evil nova-theme nov))
+ '(package-selected-packages '(evil-collection zone-nyan dimmer evil nova-theme nov))
  '(shift-select-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -40,14 +41,39 @@
 (global-unset-key (kbd "<right>"))
 (global-unset-key (kbd "<up>"))
 (global-unset-key (kbd "<down>"))
-;; adding the recommended org mode key bindings
-(global-set-key (kbd "C-c l") #'org-store-link)
-(global-set-key (kbd "C-c a") #'org-agenda)
-(global-set-key (kbd "C-c c") #'org-capture)
 ;; requiring evil mode
 (unless (package-installed-p 'evil)
   (package-refresh-contents)
   (package-install 'evil))
-
+(setq evil-want-keybinding nil)
 (require 'evil)
 (evil-mode 1)
+(unless (package-installed-p 'evil-collection)
+  (package-refresh-contents)
+  (package-install 'evil-collection))
+(require 'evil-collection)
+(evil-collection-init)
+;; Org Mode Settings
+;; adding the recommended org mode key bindings
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+(setq org-directory "~/org/")
+(setq org-capture-templates
+      '(("t" "Todo" entry
+         (file+headline "~/life-os/org/inbox.org" "Inbox")
+         "* TODO %?\n%U\n")))
+(setq org-agenda-files
+      '("~/life-os/org/inbox.org"
+	"~/life-os/org/tasks.org"
+        "~/life-os/org/notes.org"
+        "~/life-os/org/calendar.org"
+        "~/life-os/org/writing.org"
+        "~/life-os/org/dreams.org"))
+(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+(setq org-refile-use-outline-path t)
+(setq org-outline-path-complete-in-steps nil)
+;; adding the recommended org mode key bindings
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)

@@ -1,1 +1,3 @@
- # .emacs
+
+emacs
+includes evil mode

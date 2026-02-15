@@ -63,15 +63,16 @@
 (setq org-directory "~/org/")
 (setq org-capture-templates
       '(("t" "Todo" entry
-         (file+headline "~/life-os/org/inbox.org" "Inbox")
+         (file+headline "/mnt/c/Users/marit/Documents/life-os/org/inbox.org" "Inbox")
          "* TODO %?\n%U\n")))
+;; change all the directory paths on every machine emacs is installed on
 (setq org-agenda-files
-      '("~/life-os/org/inbox.org"
-	"~/life-os/org/tasks.org"
-        "~/life-os/org/notes.org"
-        "~/life-os/org/calendar.org"
-        "~/life-os/org/writing.org"
-        "~/life-os/org/dreams.org"))
+      '("/mnt/c/Users/marit/Documents/life-os/org/inbox.org"
+	"/mnt/c/Users/marit/Documents/life-os/org/tasks.org"
+        "/mnt/c/Users/marit/Documents/life-os/org/notes.org"
+        "/mnt/c/Users/marit/Documents/life-os/org/calendar.org"
+        "/mnt/c/Users/marit/Documents/life-os/org/writing.org"
+        "/mnt/c/Users/marit/Documents/life-os/org/dreams.org"))
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 (setq org-refile-use-outline-path t)
 ;; place me into insert mode when I enter capture state

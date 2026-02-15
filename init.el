@@ -17,6 +17,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; adding a clock in the bar
+(display-time-mode)
 ;; adding support for epubs - did this to read "Mastering Emacs"
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 ;; changing behaviors to focus new windows
@@ -72,7 +74,8 @@
         "~/life-os/org/dreams.org"))
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 (setq org-refile-use-outline-path t)
-(setq org-outline-path-complete-in-steps nil)
+;; place me into insert mode when I enter capture state
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
 ;; adding the recommended org mode key bindings
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
